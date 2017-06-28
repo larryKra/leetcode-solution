@@ -1,0 +1,38 @@
+#second problem in Leetcode.
+#Not very hard, but as I'm not familiar with list structure, I think it is a good practice for learning this data structure.
+#cpp code
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode* current =new ListNode(0);
+        ListNode* head=current;
+        
+        int carry=0;
+        while(l1!=NULL||l2!=NULL)
+        {
+            current->val=((l1!=NULL)?l1->val:0)+((l2!=NULL)?l2->val:0)+carry;
+            carry=current->val/10;
+            current->val%=10;
+            l1=((l1!=NULL)?l1->next:NULL);
+            l2=((l2!=NULL)?l2->next:NULL);
+            if(l1==NULL&&l2==NULL)
+            break;
+            
+            current->next=new ListNode(0);
+            current=current->next;
+            
+            
+        }
+        if(carry!=0)
+        current->next=new ListNode(1);
+        return head;
+    }
+};
